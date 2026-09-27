@@ -2,6 +2,7 @@ import {
   debounce,
   ItemView,
   Menu,
+  Platform,
   setIcon,
   TAbstractFile,
   TFile,
@@ -54,6 +55,7 @@ export class HtmlGalleryView extends ItemView {
   private headerEl: HTMLElement | null = null;
   private gridEl: HTMLElement | null = null;
   private countEl: HTMLElement | null = null;
+  private filtersOpen = false;
   private folderSelectEl: HTMLSelectElement | null = null;
   private folderClearEl: HTMLElement | null = null;
   private sortButtons = new Map<SortOrder, HTMLElement>();
@@ -188,6 +190,7 @@ export class HtmlGalleryView extends ItemView {
   private buildUi(): void {
     const root = this.contentEl;
     root.addClass("html-gallery");
+    root.toggleClass("html-gallery-mobile", Platform.isMobile);
     if (!this.keyboardBound) {
       this.registerDomEvent(root, "keydown", (evt) => this.onKeyDown(evt));
       this.keyboardBound = true;
@@ -274,8 +277,27 @@ export class HtmlGalleryView extends ItemView {
       this.applyFilter();
     });
 
+    const filterButton = header.createEl("button", {
+      cls: "html-gallery-filter-button",
+      attr: {
+        type: "button",
+        "aria-label": t("header.filters"),
+        "aria-expanded": String(this.filtersOpen),
+      },
+    });
+    setIcon(filterButton.createSpan({ cls: "html-gallery-button-icon" }), "sliders-horizontal");
+    filterButton.createSpan({ text: t("header.filters") });
+
+    const filters = header.createDiv({ cls: "html-gallery-filters" });
+    filters.toggleClass("is-open", this.filtersOpen);
+    filterButton.addEventListener("click", () => {
+      this.filtersOpen = !this.filtersOpen;
+      filters.toggleClass("is-open", this.filtersOpen);
+      filterButton.setAttribute("aria-expanded", String(this.filtersOpen));
+    });
+
     // Folder filter
-    const folderWrap = header.createDiv({ cls: "html-gallery-folder" });
+    const folderWrap = filters.createDiv({ cls: "html-gallery-folder" });
     setIcon(folderWrap.createSpan({ cls: "html-gallery-button-icon" }), "folder");
     this.folderSelectEl = folderWrap.createEl("select", {
       cls: "dropdown html-gallery-folder-select",
@@ -293,13 +315,13 @@ export class HtmlGalleryView extends ItemView {
     this.syncFolderOptions();
 
     // Sort order
-    const sortGroup = header.createDiv({ cls: "html-gallery-button-group" });
+    const sortGroup = filters.createDiv({ cls: "html-gallery-button-group" });
     this.addSortButton(sortGroup, "mtime", "clock", t("header.sort.mtime"));
     this.addSortButton(sortGroup, "path", "folder-tree", t("header.sort.path"));
     this.updateSortButtons();
 
     // File types
-    const kindGroup = header.createDiv({
+    const kindGroup = filters.createDiv({
       cls: "html-gallery-button-group html-gallery-kind-group",
       attr: { "aria-label": t("header.kinds.hint"), title: t("header.kinds.hint") },
     });
@@ -310,7 +332,7 @@ export class HtmlGalleryView extends ItemView {
     this.updateKindButtons();
 
     // Unreferenced filter
-    const btn = header.createEl("button", {
+    const btn = filters.createEl("button", {
       cls: "html-gallery-toggle-button html-gallery-unreferenced-button",
       attr: { "aria-label": t("header.unreferenced.hint"), title: t("header.unreferenced.hint") },
     });
@@ -325,7 +347,7 @@ export class HtmlGalleryView extends ItemView {
     this.updateUnreferencedButton();
 
     // Thumbnail size
-    const sizeGroup = header.createDiv({
+    const sizeGroup = filters.createDiv({
       cls: "html-gallery-button-group html-gallery-size-group",
       attr: { "aria-label": t("header.size.label"), title: t("header.size.label") },
     });

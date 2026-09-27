@@ -57,6 +57,8 @@ Search matches file names, titles and body text, including the text of PDFs and 
 3. 输入 `https://github.com/lulalulaluobo/ob-html-gallery`（或 `lulalulaluobo/ob-html-gallery`），点击 **Add Plugin**。
 4. 安装完成后，回到「设置 → 第三方插件」，刷新插件列表并启用 **HTML Gallery**。
 
+如果 BRAT 的 Beta 插件列表显示了仓库，但「已安装插件」里找不到，请在已安装列表搜索 **HTML Gallery**（插件按名称显示，不按仓库名显示）；也可以滚动到 H 开头的位置。图库已经能打开时，说明插件已安装并运行。BRAT 列表中的刷新按钮可重新下载该仓库的版本。
+
 This fork uses the same plugin ID (`html-gallery`) as the original, so install only one of them in a vault. BRAT downloads the latest [release](https://github.com/lulalulaluobo/ob-html-gallery/releases) of this fork; source code alone is not enough for installation. For updates, run **BRAT: Check for updates to all beta plugins and UPDATE**.
 
 The [Obsidian community plugin listing](https://community.obsidian.md/plugins/html-gallery) installs the original version, without this fork's changes.
@@ -68,6 +70,8 @@ Open the gallery from the ribbon icon or the command "HTML Gallery: Open gallery
 On mobile there is no ribbon bar. The command palette is the reliable way in: run "Open gallery". Long-pressing a folder in the file explorer gives the same menu as right-clicking one. Adding "Open gallery" to the toolbar at the bottom of the screen makes it one tap away; it can be added from the mobile toolbar settings.
 
 The enlarged HTML view and card menu offer "Open in default app" when Obsidian provides a system file opener. Otherwise, mobile devices with file sharing offer "Share HTML file…" so you can choose an available browser or app. Sharing sends the HTML file itself; separate CSS, JavaScript and image files in the vault are not included.
+
+On mobile, the gallery header shows search and a Filters button. Tap Filters to show folder, sort, file type, unreferenced and thumbnail size controls.
 
 ## Commands
 

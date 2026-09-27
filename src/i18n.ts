@@ -8,6 +8,7 @@ const en = {
   "menu.filterFolder": "HTML Gallery: show only this folder",
 
   "header.searchPlaceholder": "Search (space-separated terms are ANDed)",
+  "header.filters": "Filters",
   "header.sort.mtime": "Recent",
   "header.sort.path": "Folder",
   "header.size.small": "S",
@@ -118,6 +119,7 @@ const ja: Record<I18nKey, string> = {
   "menu.filterFolder": "HTML Gallery: このフォルダで絞り込む",
 
   "header.searchPlaceholder": "検索（スペース区切りで AND）",
+  "header.filters": "絞り込み",
   "header.sort.mtime": "更新順",
   "header.sort.path": "フォルダ順",
   "header.size.small": "小",
@@ -225,6 +227,7 @@ const zh: Record<I18nKey, string> = {
   "menu.filterFolder": "HTML 图库：仅显示此文件夹",
 
   "header.searchPlaceholder": "搜索（空格分隔的词语需同时匹配）",
+  "header.filters": "筛选",
   "header.sort.mtime": "最近更新",
   "header.sort.path": "文件夹",
   "header.size.small": "小",

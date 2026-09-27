@@ -35,6 +35,67 @@
   min-width: 96px;
 }
 
+.html-gallery-filters {
+  display: contents;
+}
+
+.html-gallery-filter-button {
+  display: none;
+}
+
+/* Keep the mobile search bar visible and reveal the other controls on demand. */
+.html-gallery-mobile .html-gallery-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 6px;
+  padding: 6px 10px;
+}
+
+.html-gallery-mobile .html-gallery-search {
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+}
+
+.html-gallery-mobile .html-gallery-filter-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: var(--input-height, 36px);
+  margin: 0;
+  padding: 0 10px;
+  white-space: nowrap;
+}
+
+.html-gallery-mobile .html-gallery-filters {
+  display: none;
+  grid-column: 1 / -1;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  padding-top: 4px;
+}
+
+.html-gallery-mobile .html-gallery-filters.is-open {
+  display: flex;
+}
+
+.html-gallery-mobile .html-gallery-folder {
+  width: 100%;
+  min-width: 0;
+}
+
+.html-gallery-mobile .html-gallery-folder-select {
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: none;
+}
+
+.html-gallery-mobile .html-gallery-count {
+  display: none;
+}
+
 /* A readout, not a control: the rule keeps it from reading as part of the button row */
 .html-gallery-count {
   flex: none;
