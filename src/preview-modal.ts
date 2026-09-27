@@ -1,12 +1,10 @@
-import { App, Modal, Platform, setIcon, TFile } from "obsidian";
+import { App, Modal, setIcon, TFile } from "obsidian";
 import { NoteRefs } from "./backlinks";
 import { SANDBOX_SCRIPTS } from "./constants";
+import { externalOpenMode, openExternally } from "./external-open";
 import { t } from "./i18n";
 import { ArtifactKind } from "./kinds";
 import { showNoteMenu } from "./note-menu";
-
-/** Not in the official typings, but available on desktop: opens a file with the default app */
-type AppWithDefaultApp = App & { openWithDefaultApp?: (path: string) => void };
 
 export interface PreviewModalOptions {
   file: TFile;
@@ -44,12 +42,13 @@ export class GalleryPreviewModal extends Modal {
     const actions = toolbar.createDiv({ cls: "html-gallery-modal-actions" });
     this.renderNotesButton(actions, refs);
 
-    if (Platform.isDesktopApp) {
+    const openMode = externalOpenMode(this.app, kind);
+    if (openMode) {
       const openExternal = actions.createEl("button", { cls: "html-gallery-modal-button" });
       setIcon(openExternal.createSpan({ cls: "html-gallery-button-icon" }), "external-link");
-      openExternal.createSpan({ text: t("modal.openDefaultApp") });
+      openExternal.createSpan({ text: t(openMode === "share" ? "modal.shareHtml" : "modal.openDefaultApp") });
       openExternal.addEventListener("click", () => {
-        (this.app as AppWithDefaultApp).openWithDefaultApp?.(file.path);
+        void openExternally(this.app, file, kind);
       });
     }
 

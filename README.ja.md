@@ -1,6 +1,6 @@
 # HTML Gallery（Obsidian プラグイン）
 
-[English README](README.md) · [プラグインページ](https://community.obsidian.md/plugins/html-gallery)
+[English README / BRAT インストール手順](README.md) · [オリジナル版のプラグインページ](https://community.obsidian.md/plugins/html-gallery)
 
 保管庫の中の HTML・PDF・SVG・画像を一覧表示し、それを参照するノートへ辿ることができるプラグインです。
 
@@ -22,7 +22,7 @@ HTML は既定でオンです。SVG・画像（PNG / JPEG など）・PDF はそ
 - カードを右クリックすると、埋め込みリンクやパスのコピー、ファイルエクスプローラーで表示、既定のアプリで開く、ができます。
 - 今開いているノートと同じフォルダにある、まだリンクしていないファイルを選んでリンクを挿入するコマンドがあります。
 - キーボードだけでも操作できます。矢印キーでカードを移動、Enter で拡大表示、`/` で検索欄に移動します。
-- UI は英語と日本語に対応しています。
+- UI は英語・日本語・簡体字中国語に対応しています。
 
 ## スクリーンショット
 
@@ -48,13 +48,15 @@ JS で描画するページは一覧ではテキストの代替表示になり�
 
 ## インストール
 
-コミュニティプラグインのディレクトリからインストールできます: [community.obsidian.md/plugins/html-gallery](https://community.obsidian.md/plugins/html-gallery)。ページの「Add to Obsidian」ボタンを押すと Obsidian 上でこのプラグインが開きます。Obsidian の設定「コミュニティプラグイン」の「閲覧」から「HTML Gallery」を検索しても見つかります。
+このフォーク版は [English README の BRAT 手順](README.md#通过-brat-安装此二创版--install-this-fork-with-brat) からインストールしてください。[コミュニティプラグインのページ](https://community.obsidian.md/plugins/html-gallery) でインストールされるのはオリジナル版です。同じプラグイン ID を使用するため、同じ保管庫に両方を同時にインストールすることはできません。
 
-手動で入れる場合は、[リリース](https://github.com/violetyk/obsidian-html-gallery/releases)（または後述のビルド）の `main.js` `manifest.json` `styles.css` を `<vault>/.obsidian/plugins/html-gallery/` に置き、設定「コミュニティプラグイン」で HTML Gallery を有効にします。
+手動で入れる場合は、このフォーク版の[リリース](https://github.com/lulalulaluobo/ob-html-gallery/releases)（または後述のビルド）の `main.js` `manifest.json` `styles.css` を `<vault>/.obsidian/plugins/html-gallery/` に置き、設定「コミュニティプラグイン」で HTML Gallery を有効にします。
 
 左のリボンのアイコン、またはコマンドパレットの「HTML Gallery: ギャラリーを開く」で開きます。
 
 モバイルには縦のリボンバーがありません。コマンドパレットから「ギャラリーを開く」で開くのが確実です。ファイルエクスプローラーでフォルダを長押しすると、右クリックと同じメニューが出ます。画面下のツールバーに「ギャラリーを開く」を追加しておくと1タップで開けます（Obsidian の設定にあるモバイルツールバーの項目から追加できます）。
+
+HTML の拡大表示とカードのメニューでは、Obsidian に外部アプリで開く機能があれば「既定のアプリで開く」を表示します。ない場合、ファイル共有に対応するモバイル端末では「HTML ファイルを共有…」からブラウザなどを選べます。共有されるのは HTML ファイルのみで、保管庫内の別ファイルの CSS・JavaScript・画像は含まれません。
 
 ## コマンド
 
@@ -67,7 +69,7 @@ JS で描画するページは一覧ではテキストの代替表示になり�
 
 | 項目 | 既定 | 説明 |
 |---|---|---|
-| 言語 | 自動 | 自動（Obsidian の設定に従う）/ English / 日本語 |
+| 言語 | 自動 | 自動（Obsidian の設定に従う）/ English / 日本語 / 简体中文 |
 | HTML を表示 | オン | `.html` / `.htm` を一覧します |
 | SVG を表示 | オフ | `.svg` を一覧します。`<title>` / `<desc>` / テキスト要素で検索できます |
 | 画像（PNG / JPEG など）を表示 | オフ | `.png` / `.jpg` / `.gif` / `.webp` / `.avif` / `.bmp` を一覧します。テキストを持たないため、ノートに貼った画像が多い保管庫では成果物が埋もれます |

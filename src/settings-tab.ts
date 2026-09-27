@@ -30,6 +30,7 @@ export class HtmlGallerySettingTab extends PluginSettingTab {
             auto: t("settings.language.auto"),
             en: t("settings.language.en"),
             ja: t("settings.language.ja"),
+            zh: t("settings.language.zh"),
           },
         },
       },
@@ -130,6 +131,7 @@ export class HtmlGallerySettingTab extends PluginSettingTab {
             auto: t("settings.language.auto"),
             en: t("settings.language.en"),
             ja: t("settings.language.ja"),
+            zh: t("settings.language.zh"),
           })
           .setValue(this.plugin.settings.language)
           .onChange(async (value) => {

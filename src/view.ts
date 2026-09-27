@@ -2,7 +2,6 @@ import {
   debounce,
   ItemView,
   Menu,
-  Platform,
   setIcon,
   TAbstractFile,
   TFile,
@@ -11,6 +10,7 @@ import {
 } from "obsidian";
 import { NoteRefs, resolveNoteRefs } from "./backlinks";
 import { LAZY_ROOT_MARGIN, RETIRED_CARD_TIMEOUT_MS, SIBLING_NOTE_LIMIT, VIEW_TYPE } from "./constants";
+import { externalOpenMode, openExternally } from "./external-open";
 import { collectGalleryFiles, isTargetGalleryFile, isUnderFolder } from "./files";
 import { formatDate } from "./format";
 import { t } from "./i18n";
@@ -38,9 +38,8 @@ interface GalleryCard {
   signature: string;
 }
 
-/** Not in the official typings: the file explorer view can reveal a file, and desktop can open one externally */
+/** Not in the official typings: the file explorer view can reveal a file */
 type FileExplorerLike = { revealInFolder?: (file: TFile) => void };
-type AppWithDefaultApp = { openWithDefaultApp?: (path: string) => void };
 
 const SIZES: ThumbnailSize[] = ["small", "medium", "large"];
 
@@ -721,13 +720,14 @@ export class HtmlGalleryView extends ItemView {
         .setSection("html-gallery-file")
         .onClick(() => this.revealInExplorer(file)),
     );
-    if (Platform.isDesktopApp) {
+    const openMode = externalOpenMode(this.app, kind);
+    if (openMode) {
       menu.addItem((item) =>
         item
-          .setTitle(t("menu.openDefaultApp"))
+          .setTitle(t(openMode === "share" ? "menu.shareHtml" : "menu.openDefaultApp"))
           .setIcon("external-link")
           .setSection("html-gallery-file")
-          .onClick(() => (this.app as unknown as AppWithDefaultApp).openWithDefaultApp?.(file.path)),
+          .onClick(() => void openExternally(this.app, file, kind)),
       );
     }
     menu.showAtMouseEvent(evt);

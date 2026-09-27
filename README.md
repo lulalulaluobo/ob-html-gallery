@@ -1,6 +1,8 @@
 # HTML Gallery (Obsidian plugin)
 
-[日本語版 README](README.ja.md) · [Plugin page](https://community.obsidian.md/plugins/html-gallery)
+[日本語版 README](README.ja.md) · [Original plugin page](https://community.obsidian.md/plugins/html-gallery)
+
+This fork adds Simplified Chinese UI and a mobile HTML sharing action. To install this fork, use the BRAT instructions below; the Obsidian community listing installs the original plugin.
 
 Browse the HTML files, PDFs, SVGs and images in your vault as thumbnails and jump to the notes that reference them.
 
@@ -22,7 +24,7 @@ HTML is on by default. SVG, raster images and PDF are each a separate switch und
 - Right-click a card to copy an embed link or the path, reveal the file in the explorer, or open it in the default app.
 - A command that inserts a link to a file from the current note's folder that the note does not link to yet.
 - Keyboard friendly: arrow keys move between cards, Enter opens, `/` jumps to the search box.
-- English and Japanese UI.
+- English, Japanese and Simplified Chinese UI.
 
 ## Screenshots
 
@@ -48,13 +50,24 @@ Search matches file names, titles and body text, including the text of PDFs and 
 
 ## Installation
 
-Install it from the community plugin directory: [community.obsidian.md/plugins/html-gallery](https://community.obsidian.md/plugins/html-gallery). The "Add to Obsidian" button there opens the plugin in Obsidian. You can also search for "HTML Gallery" under Settings → Community plugins → Browse.
+### 通过 BRAT 安装此二创版 / Install this fork with BRAT
 
-Manual install: put `main.js`, `manifest.json` and `styles.css` from a [release](https://github.com/violetyk/obsidian-html-gallery/releases) (or from your own build, see below) into `<vault>/.obsidian/plugins/html-gallery/`, then enable HTML Gallery under Settings → Community plugins.
+1. 在 Obsidian 的「设置 → 第三方插件」中安装并启用 [BRAT](https://github.com/TfTHacker/obsidian42-brat)。
+2. 打开命令面板，运行 **BRAT: Add a beta plugin for testing**。
+3. 输入 `https://github.com/lulalulaluobo/ob-html-gallery`（或 `lulalulaluobo/ob-html-gallery`），点击 **Add Plugin**。
+4. 安装完成后，回到「设置 → 第三方插件」，刷新插件列表并启用 **HTML Gallery**。
+
+This fork uses the same plugin ID (`html-gallery`) as the original, so install only one of them in a vault. BRAT downloads the latest [release](https://github.com/lulalulaluobo/ob-html-gallery/releases) of this fork; source code alone is not enough for installation. For updates, run **BRAT: Check for updates to all beta plugins and UPDATE**.
+
+The [Obsidian community plugin listing](https://community.obsidian.md/plugins/html-gallery) installs the original version, without this fork's changes.
+
+Manual install: put `main.js`, `manifest.json` and `styles.css` from this fork's [release](https://github.com/lulalulaluobo/ob-html-gallery/releases) (or from your own build, see below) into `<vault>/.obsidian/plugins/html-gallery/`, then enable HTML Gallery under Settings → Community plugins.
 
 Open the gallery from the ribbon icon or the command "HTML Gallery: Open gallery".
 
 On mobile there is no ribbon bar. The command palette is the reliable way in: run "Open gallery". Long-pressing a folder in the file explorer gives the same menu as right-clicking one. Adding "Open gallery" to the toolbar at the bottom of the screen makes it one tap away; it can be added from the mobile toolbar settings.
+
+The enlarged HTML view and card menu offer "Open in default app" when Obsidian provides a system file opener. Otherwise, mobile devices with file sharing offer "Share HTML file…" so you can choose an available browser or app. Sharing sends the HTML file itself; separate CSS, JavaScript and image files in the vault are not included.
 
 ## Commands
 
@@ -67,7 +80,7 @@ On mobile there is no ribbon bar. The command palette is the reliable way in: ru
 
 | Setting | Default | Description |
 |---|---|---|
-| Language | Auto | Auto (follow Obsidian), English or 日本語 |
+| Language | Auto | Auto (follow Obsidian), English, 日本語 or 简体中文 |
 | Show HTML files | On | List `.html` and `.htm` |
 | Show SVG files | Off | List `.svg`, searchable by `<title>`, `<desc>` and text elements |
 | Show raster images | Off | List `.png`, `.jpg`, `.gif`, `.webp`, `.avif`, `.bmp`. They carry no text, so a vault full of pasted screenshots will crowd out everything else |
