@@ -1,163 +1,49 @@
-# HTML Gallery (Obsidian plugin)
+# HTML 图库
 
-[日本語版 README](README.ja.md) · [Original plugin page](https://community.obsidian.md/plugins/html-gallery)
+本项目基于 [violetyk/obsidian-html-gallery](https://github.com/violetyk/obsidian-html-gallery) 开发，并在原项目基础上进行二次开发。当前版本新增了**简体中文设置与界面**、**移动端 HTML 分享到浏览器或其他应用**，以及**更紧凑的移动端图库筛选栏**。原项目的版权与许可信息见 [LICENSE](LICENSE)。
 
-This fork adds Simplified Chinese UI and a mobile HTML sharing action. To install this fork, use the BRAT instructions below; the Obsidian community listing installs the original plugin.
+HTML 图库是一个 Obsidian 插件，用于在库内浏览 HTML 文件，并可按需把 SVG、图片和 PDF 一起显示为卡片。
 
-Browse the HTML files, PDFs, SVGs and images in your vault as thumbnails and jump to the notes that reference them.
+## 功能
 
-If you save generated diagrams and documents next to your notes, you know the problem: you remember the picture, not the file name or the folder. HTML Gallery shows each file as a thumbnail so you can find it by eye, and puts a button under each one that leads to the notes linking to it.
+- 以卡片形式浏览库内的 HTML 文件，可搜索文件名、标题和正文。
+- 可选显示 SVG、常见图片格式和 PDF，并调整缩略图大小、排序方式与文件夹范围。
+- 查看引用某个文件的笔记；没有笔记引用时，可查看同文件夹的笔记候选。
+- 在设置中选择自动、English、日本語或简体中文。
+- 桌面端在 Obsidian 提供系统文件打开能力时，可将 HTML 交给默认应用打开。
+- 移动端可通过系统分享菜单将 HTML 文件交给浏览器或其他应用。手机上的图库默认收起筛选项，点击「筛选」即可展开。
 
-HTML is on by default. SVG, raster images and PDF are each a separate switch under Settings, off until you turn them on.
+移动端分享只会传递当前 HTML 文件。若页面依赖库内单独存放的 CSS、JavaScript 或图片，这些文件不会随 HTML 一起分享。
 
-![Gallery view: a PDF, an SVG and HTML files as thumbnails, with backlink buttons under each card](docs/gallery.png)
-
-## What you get
-
-- Every HTML file in the vault shown as a scaled-down live thumbnail.
-- Optionally PDFs (first page rendered as the thumbnail, with page count and full-text search over the first pages), SVGs (searchable by `<title>`, `<desc>` and their text) and raster images.
-- A Backlinks button on each card opens the notes linking to the file in one click. Files nothing links to get "Same folder" candidates instead, and you can turn a candidate into a real link from the same menu.
-- Search by file name, title and page text, and sort by date or folder. Sorting by folder groups the cards under folder headings.
-- Filter by folder. You can also right-click a folder in the file explorer to narrow the gallery to it.
-- An "Unreferenced" toggle in the header shows only the files that no note links to.
-- Click a card for a full-size view. Scripts run there, so interactive and library-based pages look the way they should. PDF cards open in Obsidian's own PDF viewer instead.
-- Right-click a card to copy an embed link or the path, reveal the file in the explorer, or open it in the default app.
-- A command that inserts a link to a file from the current note's folder that the note does not link to yet.
-- Keyboard friendly: arrow keys move between cards, Enter opens, `/` jumps to the search box.
-- English, Japanese and Simplified Chinese UI.
-
-## Screenshots
-
-The screenshots use the sample content in [`examples/`](examples/). Copy that folder into a vault to try the plugin with the same files.
-
-Each card has a button that lists the notes linking to the file. Files that nothing links to get a dashed "Same folder" button with the closest notes in the same folder instead.
-
-![Backlinks menu listing the two notes that link to a PDF](docs/backlinks-menu.png)
-
-Script-rendered pages show a text fallback in the grid, but the enlarged view always runs scripts, so the chart renders as intended.
-
-![Enlarged view of a canvas chart that is drawn by JavaScript](docs/enlarged-view.png)
-
-Search matches file names, titles and body text, including the text of PDFs and the labels in an SVG. Here "queue" narrows eleven files down to six, across all three formats.
-
-![Search for "queue" showing 6 of 11 files: a PDF, an SVG and four HTML pages](docs/search.png)
-
-## Requirements
-
-- Enable "Detect all file extensions" under Settings → Files and links. Without it Obsidian does not treat HTML as vault files and the gallery stays empty
-- Files must be inside the vault
-- PDF thumbnails use the PDF.js copy that ships with Obsidian, so nothing is downloaded and nothing leaves your machine. Scanned PDFs have no text layer, so they are only findable by file name; this plugin does not do OCR
-
-## Installation
-
-### 通过 BRAT 安装此二创版 / Install this fork with BRAT
+## 通过 BRAT 安装
 
 1. 在 Obsidian 的「设置 → 第三方插件」中安装并启用 [BRAT](https://github.com/TfTHacker/obsidian42-brat)。
 2. 打开命令面板，运行 **BRAT: Add a beta plugin for testing**。
-3. 输入 `https://github.com/lulalulaluobo/ob-html-gallery`（或 `lulalulaluobo/ob-html-gallery`），点击 **Add Plugin**。
-4. 安装完成后，回到「设置 → 第三方插件」，刷新插件列表并启用 **HTML Gallery**。
+3. 输入仓库地址 `https://github.com/lulalulaluobo/ob-html-gallery`，然后点击 **Add Plugin**。
+4. 安装后，在「设置 → 第三方插件」中启用 **HTML Gallery**。
 
-如果 BRAT 的 Beta 插件列表显示了仓库，但「已安装插件」里找不到，请在已安装列表搜索 **HTML Gallery**（插件按名称显示，不按仓库名显示）；也可以滚动到 H 开头的位置。图库已经能打开时，说明插件已安装并运行。BRAT 列表中的刷新按钮可重新下载该仓库的版本。
+已安装插件列表按插件名称显示。若看不到它，请搜索 **HTML Gallery**，或滚动到 H 开头的位置。BRAT 的仓库列表只显示跟踪的仓库；可点仓库旁的刷新按钮重新下载插件。
 
-This fork uses the same plugin ID (`html-gallery`) as the original, so install only one of them in a vault. BRAT downloads the latest [release](https://github.com/lulalulaluobo/ob-html-gallery/releases) of this fork; source code alone is not enough for installation. For updates, run **BRAT: Check for updates to all beta plugins and UPDATE**.
+这个二创版本和原项目使用相同的插件 ID `html-gallery`，同一个库中只能保留一个版本。BRAT 从本仓库的 [GitHub Releases](https://github.com/lulalulaluobo/ob-html-gallery/releases) 安装和更新本版本。
 
-The [Obsidian community plugin listing](https://community.obsidian.md/plugins/html-gallery) installs the original version, without this fork's changes.
+## 使用
 
-Manual install: put `main.js`, `manifest.json` and `styles.css` from this fork's [release](https://github.com/lulalulaluobo/ob-html-gallery/releases) (or from your own build, see below) into `<vault>/.obsidian/plugins/html-gallery/`, then enable HTML Gallery under Settings → Community plugins.
+- 通过命令面板运行 **HTML Gallery: Open gallery** 打开图库。
+- 在移动端，搜索框下方的「筛选」按钮可展开文件夹、排序、类型、未引用和缩略图大小选项。
+- 如需显示 HTML 文件，请先在 Obsidian「设置 → 文件与链接」中启用「识别所有文件扩展名」。可浏览的文件必须位于当前库内。
+- 在文件浏览器中右键或长按文件夹，可将图库范围限定到该文件夹。
 
-Open the gallery from the ribbon icon or the command "HTML Gallery: Open gallery".
+## 手动安装
 
-On mobile there is no ribbon bar. The command palette is the reliable way in: run "Open gallery". Long-pressing a folder in the file explorer gives the same menu as right-clicking one. Adding "Open gallery" to the toolbar at the bottom of the screen makes it one tap away; it can be added from the mobile toolbar settings.
+从本仓库的 [最新 Release](https://github.com/lulalulaluobo/ob-html-gallery/releases/latest) 下载 `main.js`、`manifest.json` 和 `styles.css`，放入库目录下的 `.obsidian/plugins/html-gallery/` 文件夹，然后在「设置 → 第三方插件」中启用 **HTML Gallery**。
 
-The enlarged HTML view and card menu offer "Open in default app" when Obsidian provides a system file opener. Otherwise, mobile devices with file sharing offer "Share HTML file…" so you can choose an available browser or app. Sharing sends the HTML file itself; separate CSS, JavaScript and image files in the vault are not included.
+## 本地构建
 
-On mobile, the gallery header shows search and a Filters button. Tap Filters to show folder, sort, file type, unreferenced and thumbnail size controls.
-
-## Commands
-
-| Command | What it does |
-|---|---|
-| Open gallery | Opens (or focuses) the gallery view |
-| Insert link to a file in this folder | Lists the files in the active note's folder that the note does not link to yet, and inserts an embed link to the one you pick (at the cursor in an editor, otherwise at the end of the note) |
-
-## Settings
-
-| Setting | Default | Description |
-|---|---|---|
-| Language | Auto | Auto (follow Obsidian), English, 日本語 or 简体中文 |
-| Show HTML files | On | List `.html` and `.htm` |
-| Show SVG files | Off | List `.svg`, searchable by `<title>`, `<desc>` and text elements |
-| Show raster images | Off | List `.png`, `.jpg`, `.gif`, `.webp`, `.avif`, `.bmp`. They carry no text, so a vault full of pasted screenshots will crowd out everything else |
-| Show PDF files | Off | List `.pdf` with the first page as the thumbnail and text from the first pages in the search index |
-| Run scripts in thumbnails | Off | Runs JavaScript inside thumbnails. Slower with many files. HTML only |
-| Thumbnail size | Medium | Small / Medium / Large. Also switchable from the gallery header |
-| Target folder | (whole vault) | Only list files under this folder |
-| Excluded folders | (none) | One folder per line |
-| Include index.html | Off | Show entry pages such as index.html |
-
-## Sample content
-
-[`examples/`](examples/) holds a small set of diagrams and notes that exercise every behaviour: linked and unlinked HTML, a file with two backlinks, two script-rendered pages that fall back to a text thumbnail, and an `index.html` that is hidden by default. Copy the folder anywhere inside a vault to try it.
-
-## Development
-
-TypeScript + esbuild, the same layout as the official Obsidian sample plugin.
+需要 Node.js。克隆仓库后运行：
 
 ```sh
 npm install
-npm run build   # type-check and emit main.js
-npm run dev     # watch mode
-npm run lint    # same rules as the community plugin review (eslint-plugin-obsidianmd)
-npm test        # unit tests for the pure helpers (vitest)
+npm run build
 ```
 
-Symlink this repository into a vault's plugin folder so every build is picked up by Obsidian:
-
-```sh
-ln -s "$(pwd)" "<vault>/.obsidian/plugins/html-gallery"
-```
-
-Reload the plugin with the Obsidian CLI (`obsidian plugin:reload id=html-gallery`) or with "Reload app without saving" from the command palette. Errors show up in the developer console (`Cmd+Option+I` / `Ctrl+Shift+I`).
-
-Release steps are in [RELEASING.md](RELEASING.md) (Japanese).
-
-### Source layout
-
-| File | Role |
-|---|---|
-| `src/main.ts` | Plugin entry: view, command, settings tab, folder context menu |
-| `src/view.ts` | Gallery view (header, grid, folder headings, lazy loading, scaling, keyboard navigation, card context menu, vault events, folder filter state) |
-| `src/thumbnail.ts` | Thumbnail iframe creation and scaling, resource URL cache |
-| `src/indexer.ts` | Per-kind parsing (title, body text, blank detection) and search index |
-| `src/kinds.ts` | File kinds, the extension table and which settings switch them on |
-| `src/shot.ts` | Per-kind thumbnail element (iframe / `<img>` / `<canvas>`) and its loading |
-| `src/pdf.ts` | Typed wrapper over Obsidian's PDF.js: page-1 rendering, text extraction, concurrency limit |
-| `src/async.ts` | Concurrency limiter |
-| `src/format.ts` | Date formatting |
-| `src/backlinks.ts` | Reverse index of `resolvedLinks` and same-folder guessing |
-| `src/note-menu.ts` | Menu listing referenced notes, with "add link" for guessed candidates |
-| `src/links.ts` | Building embed links and inserting them into notes |
-| `src/link-suggest-modal.ts` | Picker for the "insert link" command |
-| `src/files.ts` | Collecting and filtering target files |
-| `src/preview-modal.ts` | Enlarged view |
-| `src/i18n.ts` | UI strings (English / Japanese) |
-| `src/icon.ts` | Custom ribbon / view icon |
-| `src/settings.ts`, `src/settings-tab.ts` | Settings model and settings tab |
-| `styles.css` | Styles. Uses Obsidian CSS variables so it follows the theme |
-
-### Implementation notes
-
-- Thumbnails load the real file in an `<iframe>` with a fixed 1280px virtual viewport and scale it down with CSS, so responsive pages keep their desktop layout. Only cards near the viewport are loaded
-- Scripts are off inside thumbnails by default. Pages whose body text is nearly empty (script-rendered) get a text preview built from `<title>` and body text instead of a blank card
-- Never combine `allow-scripts` and `allow-same-origin` in one `sandbox` attribute. Thumbnails default to `allow-same-origin`; thumbnails with scripts enabled and the enlarged view use `allow-scripts`
-- Use `vault.adapter.getResourcePath()` for iframe `src`. Do not build `file://` URLs by hand
-- Never assign file content to `innerHTML`. Titles and text are extracted with `DOMParser`
-- Do not call `detachLeavesOfType` in `onunload`
-- SVGs and images are shown with `<img>`, never inlined and never in an iframe: an SVG loaded through `<img>` is in the SVG spec's secure static mode, so scripts inside it never run and it fetches no external subresources
-- PDFs are rendered with `loadPdfJs()`, the PDF.js copy Obsidian ships. No bundled dependency, and the cmap / standard-font / wasm paths under `/lib/pdfjs/` must be passed to `getDocument` or CJK pages come out blank
-- At most two PDFs are open in PDF.js at a time, and a render is cancelled (with the document destroyed) when its card scrolls out of view, so fast scrolling cannot pile up worker threads
-- A failed thumbnail keeps its placeholder and gets an `is-error` class. Nothing is swapped into the DOM, because rebuilding a card is what the iframe rule above forbids
-
-### CSS hooks
-
-Cards carry `data-kind="html|svg|image|pdf"` and their thumbnail box carries `is-kind-<kind>`, so a snippet can style one kind. Every kind uses the same box ratio, `--html-gallery-shot-ratio` (`1280 / 920`); a PDF page is cropped to the top to fill it, the way an HTML thumbnail shows only the top of the page.
+构建生成 `main.js`。将其与仓库中的 `manifest.json`、`styles.css` 一起放进 Obsidian 插件目录即可测试。
