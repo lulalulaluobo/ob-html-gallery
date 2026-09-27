@@ -15,6 +15,16 @@ HTML 图库是一个 Obsidian 插件，用于在库内浏览 HTML 文件，并�
 
 移动端分享只会传递当前 HTML 文件。若页面依赖库内单独存放的 CSS、JavaScript 或图片，这些文件不会随 HTML 一起分享。
 
+## 界面截图
+
+桌面端图库：
+
+![桌面端 HTML 图库，显示搜索、筛选工具和文件卡片](docs/gallery-desktop.png)
+
+移动端图库：
+
+<img src="docs/gallery-mobile.jpg" alt="移动端 HTML 图库，顶部提供搜索和筛选入口，下方显示文件卡片" width="360">
+
 ## 通过 BRAT 安装
 
 1. 在 Obsidian 的「设置 → 第三方插件」中安装并启用 [BRAT](https://github.com/TfTHacker/obsidian42-brat)。
